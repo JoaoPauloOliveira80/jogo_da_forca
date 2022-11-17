@@ -26,8 +26,8 @@ class Main {
     String sorteada = palavras[idxSorteado];//PALAVRA SORTEADA PALAVRA NA POSICAO idxSorteado
     
     int tam = sorteada.length();  //PEGA QUANTAS LETRA TEM A PALAVRA
+    
     char[] acertos =new char[tam];
-
     for(int i = 0; i < acertos.length; i++){
       acertos[i] = 0;
     }
@@ -35,9 +35,15 @@ class Main {
     System.out.println("Quantidade de letras: " + tam);  
     System.out.println("");
     
-
-    System.out.println("\nQual letra vc deseja tentar?");
+    boolean ganhou = false;
+    int vidas = tam;
+    
+  while(!ganhou && vidas > 0){
+    System.out.println("\nVocê tem " + vidas + "vidas");
+    System.out.println("Letras utilizadas: " + letrasUltilizada);
+    System.out.println("Qual letra vc deseja tentar?");
     letra = sc.next().toUpperCase().charAt(0);
+    letrasUltilizada+= " " + letra;
 
     for(int i = 0; i < tam; i++){
       if(letra == sorteada.charAt(i)){
@@ -48,9 +54,19 @@ class Main {
     for(int i = 0; i < tam; i++){
       if(acertos[i] == 0){
         System.out.print(" - ");
+        ganhou = false;
       }else{
         System.out.print("  " + sorteada.charAt(i) + " ");
       }
     }
+  }
+    System.out.print("Parabéns vc ganhou!!!");
+
+    /*if(ganhou > 0){
+      System.out.print("Parabéns vc ganhou!!!");
+    }else{
+      System.out.print("Vc perdeu treine mais!!!");
+    }
+    */
   }
 }
