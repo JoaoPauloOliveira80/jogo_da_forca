@@ -15,6 +15,8 @@ class Main {
     Random random = new Random();
     String letrasUltilizada = "";
     char letra;
+    String caminho = "banco.txt";
+    //File file = new File();
     
     
     String[] palavras = {"BICICLETA", "AMORA", "MACARRONADA", "FEITIÇARIA","AMIGO", "PALAVRA", "CAVALEIRO"};
@@ -37,46 +39,45 @@ class Main {
     System.out.println("Quantidade de letras: " + tam);  
     System.out.println("-----------------------------------");
     
-    boolean ganhou = false;
+    boolean ganhou = true;
     int vidas = tam;
-  for(int i = 0; i < tam; i++){
-      if(acertos[i] == 0){
-        System.out.print(" - ");
-        
-      }
-    }
-  while(!ganhou ){
+ 
+  do{
     System.out.println("\nVocê tem " + vidas + " vidas");
     System.out.println("Letras utilizadas: " + letrasUltilizada);
     System.out.println("Qual letra vc deseja tentar?");
     letra = sc.next().toUpperCase().charAt(0);
     letrasUltilizada+= " " + letra;
-    boolean perderVida = false;
+    boolean perdeVida = true;
     for(int i = 0; i < tam; i++){
-      if(letra == sorteada.charAt(i)){
-       
+      if(letra == sorteada.charAt(i)){       
         acertos[i] = 1;
-      }else{
-        perderVida = true;
+        perdeVida = false;
       }
     }
 
+    if(perdeVida){
+      vidas--;
+    }
     
     for(int i = 0; i < tam; i++){
       if(acertos[i] == 0){
-        System.out.print(" - ");
-                 
+        System.out.print(" - ");                 
         ganhou = false;
       }else{
         System.out.print("  " + sorteada.charAt(i) + " ");
       }
     }
 
-    if(perderVida){
-      vidas--;
+  }while(!ganhou && vidas > 0);
+
+    if( vidas < 0){
+      System.out.print("\nParabéns vc ganhou!!!");
+    }else{
+      System.out.print("\nVocê Perdeu...Vc precisa treinar mais!!!");
+      System.out.print("\nA palavras era: " + sorteada);
     }
-  }
-    System.out.print("\nParabéns vc ganhou!!!");
+    
 
     /*if(ganhou > 0){
       System.out.print("Parabéns vc ganhou!!!");
