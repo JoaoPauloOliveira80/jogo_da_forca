@@ -19,7 +19,7 @@ class Main {
     //File file = new File();
     
     
-    String[] palavras = {"BICICLETA", "AMORA", "MACARRONADA", "FEITIÇARIA","AMIGO", "PALAVRA", "CAVALEIRO"};
+    String[] palavras ={"BICICLETA", "AMORA", "MACARRONADA", "FEITIÇARIA","AMIGO", "PALAVRA", "CAVALEIRO"};
     
     int qtdPalavras = palavras.length; //PEGA QTD PALAVRAS TEM NO VETOR
     
@@ -39,7 +39,7 @@ class Main {
     System.out.println("Quantidade de letras: " + tam);  
     System.out.println("-----------------------------------");
     
-    boolean ganhou = true;
+    boolean ganhou = false;
     int vidas = tam;
  
   do{
@@ -59,7 +59,7 @@ class Main {
     if(perdeVida){
       vidas--;
     }
-    
+    ganhou = true;
     for(int i = 0; i < tam; i++){
       if(acertos[i] == 0){
         System.out.print(" - ");                 
@@ -71,19 +71,12 @@ class Main {
 
   }while(!ganhou && vidas > 0);
 
-    if( vidas < 0){
+    if( vidas != 0){
       System.out.print("\nParabéns vc ganhou!!!");
     }else{
       System.out.print("\nVocê Perdeu...Vc precisa treinar mais!!!");
       System.out.print("\nA palavras era: " + sorteada);
     }
-    
-
-    /*if(ganhou > 0){
-      System.out.print("Parabéns vc ganhou!!!");
-    }else{
-      System.out.print("Vc perdeu treine mais!!!");
-    }
-    */
+   
   }
 }
