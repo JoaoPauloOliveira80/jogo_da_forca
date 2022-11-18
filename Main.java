@@ -16,14 +16,30 @@ class Main {
     String letrasUltilizada = "";
     char letra;
     String caminho = "banco.txt";
-    //File file = new File();
-    
-    
-    String[] palavras ={"BICICLETA", "AMORA", "MACARRONADA", "FEITIÇARIA","AMIGO", "PALAVRA", "CAVALEIRO"};
-    
-    int qtdPalavras = palavras.length; //PEGA QTD PALAVRAS TEM NO VETOR
+   
+   // String[] palavras = new String[1000];
     
 
+    //String[] palavras = new String[1000];
+    LineNumberReader leitorLinhas = new LineNumberReader(new FileReader(caminho));
+    leitorLinhas.skip(Long.MAX_VALUE);//PULA TATÉ A ULTIMA LINHA
+    int qtdPalavras = leitorLinhas.getLineNumber();
+    leitorLinhas.close();
+    System.out.println("Numero de linha: " + qtdPalavras);
+    System.out.println("");
+
+    String[] palavras = new String[qtdPalavras];
+    
+    //CARREGA AS PALAVRAS DE UM ARQUIVO
+    BufferedReader leitorArquivo =  new BufferedReader(new FileReader(caminho));
+    String linhaLida;
+    int linha = 0;
+    while((linhaLida = leitorArquivo.readLine()) != null){
+      //System.out.println(linhaLida);
+      palavras[linha] = linhaLida;
+      linha++;
+    }
+    leitorArquivo.close();
     int idxSorteado = random.nextInt(qtdPalavras); //POSICAO NO VETOR QUE DA A PALAVRA SORTEADA
     String sorteada = palavras[idxSorteado];//PALAVRA SORTEADA PALAVRA NA POSICAO idxSorteado
     
@@ -51,7 +67,7 @@ class Main {
     boolean perdeVida = true;
     for(int i = 0; i < tam; i++){
       if(letra == sorteada.charAt(i)){       
-        acertos[i] = 1;
+        if(acertos[i] = 1;
         perdeVida = false;
       }
     }
