@@ -16,11 +16,7 @@ class Main {
     String letrasUltilizada = "";
     char letra;
     String caminho = "banco.txt";
-   
-   // String[] palavras = new String[1000];
     
-
-    //String[] palavras = new String[1000];
     LineNumberReader leitorLinhas = new LineNumberReader(new FileReader(caminho));
     leitorLinhas.skip(Long.MAX_VALUE);//PULA TATÉ A ULTIMA LINHA
     int qtdPalavras = leitorLinhas.getLineNumber();
@@ -49,6 +45,7 @@ class Main {
     for(int i = 0; i < acertos.length; i++){
       acertos[i] = 0;
     }
+    
     System.out.println("\n----------- JOGO DA FORCA ---------");
     System.out.println("Quantidade de palavras: "+ qtdPalavras);
     System.out.println("Palavra selecionada: " + sorteada);
@@ -57,23 +54,37 @@ class Main {
     
     boolean ganhou = false;
     int vidas = tam;
- 
+
+    
   do{
     System.out.println("\nVocê tem " + vidas + " vidas");
     System.out.println("Letras utilizadas: " + letrasUltilizada);
     System.out.println("Qual letra vc deseja tentar?");
-    letra = sc.next().toUpperCase().charAt(0);
-    letrasUltilizada+= " " + letra;
-    boolean perdeVida = true;
-    for(int i = 0; i < tam; i++){
-      if(letra == sorteada.charAt(i)){       
-        if(acertos[i] = 1;
-        perdeVida = false;
-      }
-    }
 
-    if(perdeVida){
-      vidas--;
+    String digitado = sc.next().toUpperCase();
+    if(digitado.length() > 1){
+      if(digitado.equals(sorteada)){
+        ganhou = true;
+        break;
+      }else{
+        vidas = 0;
+        break;
+      }
+    }else{        
+        
+        letra = digitado.charAt(0);
+        letrasUltilizada+= " " + letra;
+        boolean perdeVida = true;
+        for(int i = 0; i < tam; i++){
+          if(letra == sorteada.charAt(i)){       
+            acertos[i] = 1;
+            perdeVida = false;
+          }
+        }
+    
+        if(perdeVida){
+          vidas--;
+        }
     }
     ganhou = true;
     for(int i = 0; i < tam; i++){
